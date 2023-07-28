@@ -1,15 +1,12 @@
 from .errors import InvalidFont
+from .base_class import BaseClass
 import pygame as p
 
 
-class Button:
+class Button(BaseClass):
 
     def __init__(self, size, pos, colour, text="", text_colour=p.Color("white"), font="arial", font_size=30):
-        self.width = size[0]
-        self.height = size[1]
-        self.x = pos[0]
-        self.y = pos[1]
-        self.colour = colour
+        super().__init__(pos, size, colour)
         self.has_text = True if text else False
 
         if self.has_text:

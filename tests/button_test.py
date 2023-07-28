@@ -1,5 +1,4 @@
 from pgessentials import Button
-import time
 import pygame as p
 
 width = height = 500
