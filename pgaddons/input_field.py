@@ -13,6 +13,7 @@ class InputField(BaseClass):
         self.text = ""
         self.bg_text = background_text
         self.active = False
+        self.locked = False
         if self.font not in pg.font.get_fonts():
             raise InvalidFont(self.font)
 
