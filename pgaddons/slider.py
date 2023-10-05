@@ -1,5 +1,11 @@
 from .base_class import BaseClass
-import pygame as pg
+from .errors import PygameNotInstalled
+
+try:
+    import pygame as pg
+
+except ImportError:
+    raise PygameNotInstalled()
 
 
 class Slider(BaseClass):

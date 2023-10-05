@@ -1,11 +1,16 @@
-from .errors import InvalidFont
+from .errors import *
 from .base_class import BaseClass
-import pygame as pg
+
+try:
+    import pygame as pg
+
+except ImportError:
+    raise PygameNotInstalled()
 
 
 class Button(BaseClass):
 
-    def __init__(self, size, pos, colour, text="", text_colour=pg.Color("white"), font="arial", font_size=30):
+    def __init__(self, pos, size, colour, text="", text_colour=pg.Color("white"), font="arial", font_size=30):
         super().__init__(pos, size, colour)
         self.has_text = True if text else False
 
@@ -14,7 +19,7 @@ class Button(BaseClass):
             self.text_colour = text_colour
             self.font = font.lower()
             self.font_size = font_size
-            if self.font not in pg.font.get_fonts():
+            if self.font.removesuffix(".ttf") not in pg.font.get_fonts() and not self.font == "freesansbold":
                 raise InvalidFont(self.font)
 
     def draw(self, screen):
