@@ -15,3 +15,6 @@ class Slider(BaseClass):
         self.min_value = min_value
         self.max_value = max_value
         self.value = value
+
+    def draw(self):
+        pass

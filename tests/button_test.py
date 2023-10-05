@@ -1,10 +1,10 @@
-from pgessentials import Button
+from pgaddons import Button
 import pygame as pg
 
 width = height = 500
 pg.init()
 screen = pg.display.set_mode((width, height))
-button = Button((150, 75), (175, 212.5),  pg.Color("grey 33"), text="Hello World", text_colour=pg.Color("grey 66"), font="verdana", font_size=25)
+button = Button((150, 250), (175, 112.5),  pg.Color("grey 33"), text="Hello World", text_colour=pg.Color("grey 66"), font="verdana", font_size=25)
 clock = pg.time.Clock()
 x = 0
 
