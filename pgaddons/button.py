@@ -10,7 +10,9 @@ except ImportError:
 
 class Button(BaseClass):
 
-    def __init__(self, pos, size, colour, text="", text_colour=pg.Color("white"), font="arial", font_size=30):
+    def __init__(self, pos, size, colour, text="", text_colour=pg.Color("white"),
+                 font: str | type[pg.font.Font] | type[pg.font.SysFont] = "freesansbold", font_size=30):
+
         super().__init__(pos, size, colour)
         self.has_text = True if text else False
 
