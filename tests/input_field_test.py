@@ -1,5 +1,5 @@
 import pygame as pg
-from pgessentials import InputField
+from pgaddons import InputField
 
 width = height = 500
 fps = 30
