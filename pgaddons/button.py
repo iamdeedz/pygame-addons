@@ -19,16 +19,22 @@ class Button(BaseClass):
         if self.has_text:
             self.text = text
             self.text_colour = text_colour
-            self.font = font.lower()
             self.font_size = font_size
-            if self.font.removesuffix(".ttf") not in pg.font.get_fonts() and not self.font == "freesansbold":
-                raise InvalidFont(self.font)
+            if isinstance(font, str):
+                self.font = font.lower()
+                if self.font.removesuffix(".ttf") not in pg.font.get_fonts() and self.font != "freesansbold":
+                    raise InvalidFont(self.font)
+
+                else:
+                    self.font = pg.font.SysFont(font, font_size)
+
+            else:
+                self.font = font
 
     def draw(self, screen):
         pg.draw.rect(screen, self.colour, (self.x, self.y, self.width, self.height))
         if self.has_text:
-            font = pg.font.SysFont(self.font, self.font_size)
-            text = font.render(self.text, True, self.text_colour)
+            text = self.font.render(self.text, True, self.text_colour)
             screen.blit(text, (self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
 
     def on_click(self):

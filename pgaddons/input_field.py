@@ -16,34 +16,40 @@ class InputField(BaseClass):
         super().__init__(pos, size, colour)
         self.active_colour = active_colour
         self.text_colour = text_colour
-        self.font = font.lower()
         self.font_size = font_size
         self.text = ""
         self.bg_text = background_text
         self.active = False
         self.locked = False
         self.max_length = max_length
-        if self.font.removesuffix(".ttf") not in pg.font.get_fonts() and not self.font == "freesansbold":
-            raise InvalidFont(self.font)
+        if isinstance(font, str):
+            self.font = font.lower()
+            if self.font.removesuffix(".ttf") not in pg.font.get_fonts() and self.font != "freesansbold":
+                raise InvalidFont(self.font)
+
+            else:
+                self.font = pg.font.SysFont(font, font_size)
+
+        else:
+            self.font = font
 
     def draw(self, screen):
         pg.draw.rect(screen, self.colour if not self.active else self.active_colour,
                      (self.x, self.y, self.width, self.height))
-        font = pg.font.SysFont(self.font, self.font_size, italic=True if not self.text else False)
         if not self.text:
             if isinstance(self.bg_text, str):
-                text = font.render(self.bg_text, True, self.text_colour)
+                text = self.font.render(self.bg_text, True, self.text_colour)
                 screen.blit(text, (
                 self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
 
             else:
                 for line in self.bg_text:
-                    text = font.render(line, True, self.text_colour)
+                    text = self.font.render(line, True, self.text_colour)
                     screen.blit(text, (self.x + (self.width / 2 - text.get_width() / 2),
                                        self.y + (self.height / 2 - text.get_height() / 2) + (
                                                    self.bg_text.index(line) * text.get_height())))
         else:
-            text = font.render(self.text, True, self.text_colour)
+            text = self.font.render(self.text, True, self.text_colour)
             screen.blit(text, (
             self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
 
