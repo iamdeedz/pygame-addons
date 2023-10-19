@@ -16,7 +16,7 @@ class Slider(BaseClass):
                  border_size: int = 3,
                  background_text: str = "",
                  font: str | type[pg.font.Font] | type[pg.font.SysFont] = "freesansbold",
-                 font_size=25, text_colour: tuple[int, int, int] | pg.Color = pg.Color("white")):
+                 font_size=25, font_colour: str | tuple[int, int, int] | pg.Color = pg.Color("white")):
 
         super().__init__(pos, size, colour)
 
@@ -45,7 +45,7 @@ class Slider(BaseClass):
 
         # Font Variables
         self.bg_text = background_text
-        self.text_colour = text_colour
+        self.font_colour = font_colour
         if isinstance(font, str):
             self.font = font.lower()
             if self.font.removesuffix(".ttf") not in pg.font.get_fonts() and self.font != "freesansbold":
@@ -60,10 +60,10 @@ class Slider(BaseClass):
     def draw(self, screen):
         pg.draw.rect(screen, self.colour, (self.x, self.y, self.width, self.height), round(self.height / 2), ceil(self.height / 2))
         pg.draw.rect(screen, self.border_colour, (self.x, self.y, self.width, self.height), self.border_size, ceil(self.height / 2))
-        text = self.font.render(self.bg_text, True, self.text_colour)
+        text = self.font.render(self.bg_text, True, self.font_colour)
         screen.blit(text, (self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
         pg.draw.circle(screen, self.border_colour, (self.circle_x, self.circle_y), round(self.height / 2) - self.border_size * 2)
-        text = self.font.render(str(self.value), True, self.text_colour)
+        text = self.font.render(str(self.value), True, self.font_colour)
         screen.blit(text, (self.circle_x - text.get_width() / 2, self.circle_y - text.get_height() / 2))
 
     def handle_mousedown(self, mouse_pos: tuple[int, int]):
