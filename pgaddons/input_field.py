@@ -10,12 +10,13 @@ except ImportError:
 
 class InputField(BaseClass):
     def __init__(self, pos, size, colour, active_colour, background_text: str | list = "",
-                 text_colour=pg.Color("white"), font: str | type[pg.font.Font] | type[pg.font.SysFont] = "freesansbold",
+                 font_colour: str | tuple[int, int, int] | pg.Color = pg.Color("white"),
+                 font: str | type[pg.font.Font] | type[pg.font.SysFont] = "freesansbold",
                  font_size=30, max_length=10):
 
         super().__init__(pos, size, colour)
         self.active_colour = active_colour
-        self.text_colour = text_colour
+        self.font_colour = font_colour
         self.font_size = font_size
         self.text = ""
         self.bg_text = background_text
@@ -38,18 +39,18 @@ class InputField(BaseClass):
                      (self.x, self.y, self.width, self.height))
         if not self.text:
             if isinstance(self.bg_text, str):
-                text = self.font.render(self.bg_text, True, self.text_colour)
+                text = self.font.render(self.bg_text, True, self.font_colour)
                 screen.blit(text, (
                 self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
 
             else:
                 for line in self.bg_text:
-                    text = self.font.render(line, True, self.text_colour)
+                    text = self.font.render(line, True, self.font_colour)
                     screen.blit(text, (self.x + (self.width / 2 - text.get_width() / 2),
                                        self.y + (self.height / 2 - text.get_height() / 2) + (
                                                    self.bg_text.index(line) * text.get_height())))
         else:
-            text = self.font.render(self.text, True, self.text_colour)
+            text = self.font.render(self.text, True, self.font_colour)
             screen.blit(text, (
             self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
 
