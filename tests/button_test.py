@@ -4,6 +4,7 @@ import pygame as pg
 width = height = 500
 pg.init()
 screen = pg.display.set_mode((width, height))
+pg.display.set_caption("Button Test")
 button = Button((150, 250), (175, 112.5), pg.Color("grey 33"), text="Hello World", font_colour=pg.Color("grey 66"),
                 font="verdana", font_size=25)
 clock = pg.time.Clock()

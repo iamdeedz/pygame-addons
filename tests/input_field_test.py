@@ -8,6 +8,7 @@ fps = 30
 def main():
     pg.init()
     screen = pg.display.set_mode((width, height))
+    pg.display.set_caption("Input Field Test")
     input_field = InputField((175, 212.5), (150, 75), pg.Color("grey 33"), pg.Color("grey 50"),
                              background_text="Type Here", font_colour=pg.Color("grey 66"), font="verdana", font_size=25)
     clock = pg.time.Clock()

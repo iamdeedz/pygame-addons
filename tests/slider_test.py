@@ -4,6 +4,7 @@ import pygame as p
 
 p.init()
 screen = p.display.set_mode((500, 500))
+p.display.set_caption("Slider Test")
 clock = p.time.Clock()
 slider = Slider((0, 0), (300, 50), p.Color("lightgrey"), p.Color("grey25"), 50, 100, 100, font_size=20)
 
