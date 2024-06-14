@@ -9,7 +9,7 @@ except ImportError:
 
 
 class InputField(BaseClass):
-    def __init__(self, pos, size, colour, active_colour, background_text: str | list = "",
+    def __init__(self, pos: list[int, int] | tuple[int, int], size: list[int, int] | tuple[int, int], colour, active_colour, background_text: str | list = "",
                  font_colour: str | tuple[int, int, int] | pg.Color = pg.Color("white"),
                  font: str | type[pg.font.Font] | type[pg.font.SysFont] = "freesansbold",
                  font_size=30, max_length=10):
