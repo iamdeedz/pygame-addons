@@ -34,9 +34,6 @@ class Button(BaseClass):
     def draw(self, screen):
         pg.draw.rect(screen, self.colour, (self.x, self.y, self.width, self.height))
         if self.has_text:
-            # text = self.font.render(self.text, True, self.text_colour)
-            # screen.blit(text, (self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
-
             if isinstance(self.text, str):
                 text = self.font.render(self.text, True, self.text_colour)
                 screen.blit(text, (self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
