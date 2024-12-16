@@ -24,10 +24,10 @@ class Slider(BaseClass):
         self.border_colour = border_colour
         self.border_size = border_size
 
-        # Value Variables
+        # Value Variable
         self.min_value = min_value
         self.max_value = max_value
-        self.start_value = start_value
+        self.start_value = self.value = start_value
         if self.start_value > self.max_value:
             self.start_value = self.max_value
         self.amount_of_values = self.max_value - self.min_value
@@ -63,16 +63,12 @@ class Slider(BaseClass):
         text = self.font.render(self.bg_text, True, self.font_colour)
         screen.blit(text, (self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
         pg.draw.circle(screen, self.border_colour, (self.circle_x, self.circle_y), round(self.height / 2) - self.border_size * 2)
-        text = self.font.render(str(self.start_value), True, self.font_colour)
+        text = self.font.render(str(self.value), True, self.font_colour)
         screen.blit(text, (self.circle_x - text.get_width() / 2, self.circle_y - text.get_height() / 2))
 
     def handle_mousedown(self, mouse_pos: tuple[int, int]):
         if self.can_be_dragged:
             mouse_x, mouse_y = mouse_pos
-
-            # distance = (center_x - mouse_x, center_y - mouse_y)
-            # use pythagoras to check if the mouse is inside the circle
-
             circle_center = (self.circle_x, self.circle_y)
             distance = (circle_center[0] - mouse_x, circle_center[1] - mouse_y)
             if distance[0]**2 + distance[1]**2 > self.circle_radius**2:
@@ -86,4 +82,4 @@ class Slider(BaseClass):
             # Clamp the circle to the slider
             self.circle_x = max(min((self.x + self.width) - self.circle_radius, mouse_x), self.x + self.circle_radius)
 
-            self.start_value = round((self.circle_x - self.x - self.circle_radius) / (self.width - 2 * self.circle_radius) * self.amount_of_values + self.min_value)
+            self.value = round((self.circle_x - self.x - self.circle_radius) / (self.width - 2 * self.circle_radius) * self.amount_of_values + self.min_value)

@@ -12,12 +12,13 @@ class InputField(BaseClass):
     def __init__(self, pos: list[int, int] | tuple[int, int], size: list[int, int] | tuple[int, int], colour, active_colour, background_text: str | list = "",
                  font_colour: str | tuple[int, int, int] | pg.Color = pg.Color("white"),
                  font: str | type[pg.font.Font] | type[pg.font.SysFont] = "freesansbold",
-                 font_size=30, max_length=10):
+                 font_size=30, max_length=10, border_radius: int = 0):
 
         super().__init__(pos, size, colour)
         self.active_colour = active_colour
         self.font_colour = font_colour
         self.font_size = font_size
+        self.border_radius = border_radius
         self.text = ""
         self.bg_text = background_text
         self.active = False
@@ -36,7 +37,7 @@ class InputField(BaseClass):
 
     def draw(self, screen):
         pg.draw.rect(screen, self.colour if not self.active else self.active_colour,
-                     (self.x, self.y, self.width, self.height))
+                     (self.x, self.y, self.width, self.height), border_radius=self.border_radius)
         if not self.text:
             if isinstance(self.bg_text, str):
                 text = self.font.render(self.bg_text, True, self.font_colour)
