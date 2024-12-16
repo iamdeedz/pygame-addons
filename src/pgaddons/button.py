@@ -1,20 +1,17 @@
 from .errors import *
 from .base_class import BaseClass
-
-try:
-    import pygame as pg
-
-except ImportError:
-    raise PygameNotInstalled()
+import pygame as pg
 
 
 class Button(BaseClass):
 
     def __init__(self, pos: list[int, int] | tuple[int, int], size: list[int, int] | tuple[int, int], colour: str | tuple[int, int ,int] | pg.Color, text: str | list = "", text_colour: str | tuple[int, int, int] | pg.Color = pg.Color("white"),
-                 font: str | type[pg.font.Font] | type[pg.font.SysFont] = "freesansbold", font_size=30):
+                 font: str | type[pg.font.Font] | type[pg.font.SysFont] = "freesansbold", font_size: int = 30, border_radius: int = 0):
 
         super().__init__(pos, size, colour)
         self.has_text = True if text else False
+
+        self.border_radius = border_radius
 
         if self.has_text:
             self.text = text
@@ -32,7 +29,7 @@ class Button(BaseClass):
                 self.font = font
 
     def draw(self, screen):
-        pg.draw.rect(screen, self.colour, (self.x, self.y, self.width, self.height))
+        pg.draw.rect(screen, self.colour, (self.x, self.y, self.width, self.height), border_radius=self.border_radius)
         if self.has_text:
             if isinstance(self.text, str):
                 text = self.font.render(self.text, True, self.text_colour)

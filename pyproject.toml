@@ -8,9 +8,18 @@ version = "1.1"
 authors = [
   { name="iamdeedz" },
 ]
+
 description = "A collection of additions to pygame."
 readme = "README.md"
+license = {text = "MIT License"}
+keywords = ["pygame", "gui", ]
+
 requires-python = ">=3"
+dependencies = [
+  "pygame"
+]
+
+
 [project.urls]
 "Homepage" = "https://github.com/iamdeedz/pygame-addons"
-"Bug Tracker" = "https://github.com/iamdeedz/pygame-addons/issues"
+"Issues" = "https://github.com/iamdeedz/pygame-addons/issues"
