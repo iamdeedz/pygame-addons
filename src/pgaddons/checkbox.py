@@ -1,10 +1,5 @@
-from .errors import *
 from .base_class import *
-
-try:
-    import pygame as pg
-except ImportError:
-    raise PygameNotInstalled()
+import pygame as pg
 
 
 class CheckBox(BaseClass):

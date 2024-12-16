@@ -1,12 +1,6 @@
 from .base_class import BaseClass
-from .errors import *
 from math import ceil
-
-try:
-    import pygame as pg
-
-except ImportError:
-    raise PygameNotInstalled()
+import pygame as pg
 
 
 class Slider(BaseClass):

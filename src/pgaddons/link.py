@@ -1,9 +1,4 @@
-from .errors import *
-
-try:
-    import pygame as pg
-except ImportError:
-    raise PygameNotInstalled()
+import pygame as pg
 
 
 class Link:
