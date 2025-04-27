@@ -1,4 +1,5 @@
 from .base_class import BaseClass
+from .errors import InvalidFont
 from math import ceil
 import pygame as pg
 
@@ -52,7 +53,7 @@ class Slider(BaseClass):
             self.font = font
 
     def draw(self, screen):
-        pg.draw.rect(screen, self.colour, (self.x, self.y, self.width, self.height), round(self.height / 2), ceil(self.height / 2))
+        pg.draw.rect(screen, self.colour, (self.x, self.y, self.width, self.height), border_radius=ceil(self.height / 2))
         pg.draw.rect(screen, self.border_colour, (self.x, self.y, self.width, self.height), self.border_size, ceil(self.height / 2))
         text = self.font.render(self.bg_text, True, self.font_colour)
         screen.blit(text, (self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
